@@ -13,6 +13,16 @@ git push -u origin main
 git add . ; git commit -a -m "update README" ; git push -u origin main
 ```
 
+The use case:
+- monitor the rpm installed 
+- once the bloack rpm is detected, remove it
+
+We use it to demo Event-Driven Ansible and Ansible Rulebooks.
+
+Solution:
+- use apach kafka to monior the log file /var/log/dnf.log and generate the event for each new line from this log file
+- use Event-Driven Ansible and Ansible Rulebooks to detect the blocked rpm. Once find it, remove it.
+
 # Install ansible-rulebook
 
 **Install the latest RHEL 9**
@@ -143,3 +153,22 @@ $ echo Another line>> test.txt
 You should see the line appear in the console consumer output and in the sink file.
 
 
+# Result
+
+**Start ansible-rulebook**
+
+```
+[jinzha@localhost kafka]$ ansible-rulebook --rulebook kafka-dnf.yml -i inventory.yml --verbose
+INFO:ansible_rulebook.app:Starting sources
+INFO:ansible_rulebook.app:Starting rules
+INFO:ansible_rulebook.engine:run_ruleset
+INFO:ansible_rulebook.engine:ruleset define: {"name": "Read messages from a kafka topic and act on them", "hosts": ["kafka.example.com"], "sources": [{"EventSource": {"name": "ansible.eda.kafka", "source_name": "ansible.eda.kafka", "source_args": {"host": "kafka.example.com", "port": 9092, "topic": "connect-dnf", "group_id": null}, "source_filters": []}}], "rules": [{"Rule": {"name": "receive event", "condition": {"AllCondition": [{"EqualsExpression": {"lhs": {"Event": "schema.type"}, "rhs": {"String": "string"}}}]}, "action": {"Action": {"action": "run_playbook", "action_args": {"name": "dnf-event.yaml"}}}, "enabled": true}}]}
+INFO:ansible_rulebook.engine:load source
+INFO:ansible_rulebook.engine:load source filters
+INFO:ansible_rulebook.engine:Calling main in ansible.eda.kafka
+INFO:aiokafka.consumer.subscription_state:Updating subscribed topics to: frozenset({'connect-dnf'})
+INFO:ansible_rulebook.engine:Waiting for event from Read messages from a kafka topic and act on them
+INFO:aiokafka.consumer.group_coordinator:Metadata for topic has changed from {} to {'connect-dnf': 1}. 
+...
+
+```

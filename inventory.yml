@@ -1,1 +1,2 @@
-localhost
+#localhost
+kafka.example.com  ansible_user=root 
