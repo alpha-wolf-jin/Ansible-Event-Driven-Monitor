@@ -177,11 +177,11 @@ INFO:aiokafka.consumer.group_coordinator:Metadata for topic has changed from {} 
 **Install telnet**
 
 ![Install telnet](images/ansible-eda-01.png)
-`telnet` is installed.
+`telnet` package is installed.
 
 **Trigger the playbook**
 
-The events are listened. When telnet was found, task `Remove the RPM listed in black list` is trigger.
+The events are listened. When telnet package was found, task `Remove the RPM listed in black list` is trigger.
 ![Install telnet](images/ansible-eda-02.png)
 
 **telnet is removed**
