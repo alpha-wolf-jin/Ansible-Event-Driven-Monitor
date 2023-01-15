@@ -1,0 +1,5 @@
+
+
+ansible-rulebook --rules kafka-example.yml -i inventory.yml --verbose
+
+kafka-console-producer --bootstrap-server broker:9092 --topic eda-topic
