@@ -156,7 +156,7 @@ You should see the line appear in the console consumer output and in the sink fi
 
 # Result
 
-**Start ansible-rulebook**
+**Start ansible-rulebook to monitor events**
 
 ```
 [jinzha@localhost kafka]$ ansible-rulebook --rulebook kafka-dnf.yml -i inventory.yml --verbose
@@ -173,3 +173,17 @@ INFO:aiokafka.consumer.group_coordinator:Metadata for topic has changed from {} 
 ...
 
 ```
+
+**Install telnet**
+
+![Install telnet](images/ansible-eda-01.png)
+`telnet` is installed.
+
+**Trigger the playbook**
+
+![Install telnet](images/ansible-eda-02.png)
+
+**telnet is removed**
+
+![Install telnet](images/ansible-eda-03.png)
+
