@@ -19,6 +19,7 @@ git add . ; git commit -a -m "update README" ; git push -u origin main
 
 
 **Solution**
+
 Use kafka event, Event-Driven Ansible and Ansible Rulebooks
 - use apach kafka to monior the log file /var/log/dnf.log and generate the event for each new line from this log file
 - use Event-Driven Ansible and Ansible Rulebooks to detect the blocked rpm. Once find it, remove it.
