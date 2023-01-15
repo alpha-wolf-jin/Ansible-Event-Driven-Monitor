@@ -181,6 +181,7 @@ INFO:aiokafka.consumer.group_coordinator:Metadata for topic has changed from {} 
 
 **Trigger the playbook**
 
+The events are listened. When telnet was found, task `Remove the RPM listed in black list` is trigger.
 ![Install telnet](images/ansible-eda-02.png)
 
 **telnet is removed**
