@@ -120,9 +120,16 @@ Note that the data is being stored in the Kafka topic connect-test, so we can al
 {"schema":{"type":"string","optional":false},"payload":"2023-01-14T04:51:21-0500 DDEBUG timer: config: 6 ms"}
 {"schema":{"type":"string","optional":false},"payload":"2023-01-14T04:51:22-0500 DEBUG Loaded plugins: builddep, changelog, config-manager, copr, debug, debuginfo-install, download, generate_completion_cache, groups-manager, needs-restarting, playground, product-id, repoclosure, repodiff, repograph, repomanage, reposync, subscription-manager, uploadprofile"}
 ...
-{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:16:34+0800 DEBUG ---> Package checkpolicy.x86_64 2.9-1.el8 will be installed"}
-{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:16:34+0800 DEBUG ---> Package python3-setools.x86_64 4.3.0-3.el8 will be installed"}
-{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:16:34+0800 DEBUG ---> Package python3-libsemanage.x86_64 2.9-9.el8_6 will be installed"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: checkpolicy-2.9-1.el8.x86_64"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: grub2-tools-efi-1:2.02-142.el8_7.1.x86_64"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: kernel-4.18.0-425.10.1.el8_7.x86_64"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: kernel-core-4.18.0-425.10.1.el8_7.x86_64"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: kernel-modules-4.18.0-425.10.1.el8_7.x86_64"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: policycoreutils-python-utils-2.9-20.el8.noarch"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: python3-audit-3.0.7-4.el8.x86_64"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: python3-libsemanage-2.9-9.el8_6.x86_64"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: python3-policycoreutils-2.9-20.el8.noarch"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:21:37+0800 DEBUG Installed: python3-setools-4.3.0-3.el8.x86_64"}
 ...
 ```
 
