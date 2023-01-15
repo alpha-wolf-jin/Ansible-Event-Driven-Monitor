@@ -13,11 +13,11 @@ git push -u origin main
 git add . ; git commit -a -m "update README" ; git push -u origin main
 ```
 
-The use case:
+**use case**
 - monitor the rpm installed 
-- once the bloack rpm is detected, remove it
+- once the blocked rpm is detected, remove it
 
-We use it to demo Event-Driven Ansible and Ansible Rulebooks.
+Use kafka event, Event-Driven Ansible and Ansible Rulebooks to demo
 
 Solution:
 - use apach kafka to monior the log file /var/log/dnf.log and generate the event for each new line from this log file
