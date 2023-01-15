@@ -19,6 +19,8 @@ git add . ; git commit -a -m "update README" ; git push -u origin main
 
 **Install ansible-rulebook**
 
+Reference: https://github.com/ansible/ansible-rulebook/blob/main/docs/installation.rst
+
 ```
 dnf --assumeyes install gcc java-17-openjdk maven python3-devel python3-pip
 export JDK_HOME=/usr/lib/jvm/java-17-openjdk
