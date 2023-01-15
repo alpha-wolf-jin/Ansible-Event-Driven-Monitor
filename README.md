@@ -69,18 +69,60 @@ First, make sure to add connect-file-3.3.1.jar to the plugin.path property in th
 Edit the config/connect-standalone.properties file, add or change the plugin.path configuration property match the following, and save the file:
 ```
 $ echo "plugin.path=libs/connect-file-3.3.1.jar"
+
+# grep -v "^#" config/connect-standalone.properties
+
+bootstrap.servers=localhost:9092
+
+key.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter=org.apache.kafka.connect.json.JsonConverter
+key.converter.schemas.enable=true
+value.converter.schemas.enable=true
+
+offset.storage.file.filename=/tmp/connect.offsets
+offset.flush.interval.ms=10000
+
+plugin.path=libs/connect-file-3.3.1.jar
 ```
 
-Then, start by creating some seed data to test with:
+
 ```
-$ echo -e "foo\nbar" > test.txt
+# grep -v "^#" ./config/connect-file-source.properties 
+
+name=local-file-source
+connector.class=FileStreamSource
+tasks.max=1
+file=/var/log/dnf.log
+topic=connect-dnf
+```
+
+```
+# grep -v "^#" config/connect-file-sink.properties 
+
+name=local-file-sink
+connector.class=FileStreamSink
+tasks.max=1
+file=dnf.sink.txt
+topics=connect-test
+```
+
+Next, we'll start two connectors running in standalone mode, which means they run in a single, local, dedicated process. We provide three configuration files as parameters. The first is always the configuration for the Kafka Connect process, containing common configuration such as the Kafka brokers to connect to and the serialization format for data. The remaining configuration files each specify a connector to create. These files include a unique connector name, the connector class to instantiate, and any other configuration required by the connector.
+
+Open another terminal session and run:
+```
+bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties
 ```
 
 Note that the data is being stored in the Kafka topic connect-test, so we can also run a console consumer to see the data in the topic (or use custom consumer code to process it):
 ```
-$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning
-{"schema":{"type":"string","optional":false},"payload":"foo"}
-{"schema":{"type":"string","optional":false},"payload":"bar"}
+# bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-dnf --from-beginning
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T04:51:21-0500 INFO --- logging initialized ---"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T04:51:21-0500 DDEBUG timer: config: 6 ms"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T04:51:22-0500 DEBUG Loaded plugins: builddep, changelog, config-manager, copr, debug, debuginfo-install, download, generate_completion_cache, groups-manager, needs-restarting, playground, product-id, repoclosure, repodiff, repograph, repomanage, reposync, subscription-manager, uploadprofile"}
+...
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:16:34+0800 DEBUG ---> Package checkpolicy.x86_64 2.9-1.el8 will be installed"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:16:34+0800 DEBUG ---> Package python3-setools.x86_64 4.3.0-3.el8 will be installed"}
+{"schema":{"type":"string","optional":false},"payload":"2023-01-14T18:16:34+0800 DEBUG ---> Package python3-libsemanage.x86_64 2.9-9.el8_6 will be installed"}
 ...
 ```
 
