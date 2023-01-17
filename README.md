@@ -147,12 +147,13 @@ Note that the data is being stored in the Kafka topic connect-test, so we can al
 The connectors continue to process data, so we can add data to the file and see it move through the pipeline:
 
 ```
-$ echo Another line>> test.txt
+$ echo Another line>> /var/log/dnf/log
 ..
 ```
 
-You should see the line appear in the console consumer output and in the sink file.
+You should see the line appear in the console consumer output.
 
+https://www.redhat.com/sysadmin/introduction-tmux-linux
 
 # Result
 
