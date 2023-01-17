@@ -147,7 +147,7 @@ Note that the data is being stored in the Kafka topic connect-test, so we can al
 The connectors continue to process data, so we can add data to the file and see it move through the pipeline:
 
 ```
-$ echo Another line>> /var/log/dnf/log
+$ echo Another line>> /var/log/dnf.log
 ..
 ```
 
