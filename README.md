@@ -124,7 +124,7 @@ Open another terminal session and run:
 bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties
 ```
 
-Note that the data is being stored in the Kafka topic connect-test, so we can also run a console consumer to see the data in the topic (or use custom consumer code to process it):
+Note that the data is being stored in the Kafka topic connect-dnf, so we can also run a console consumer to see the data in the topic (or use custom consumer code to process it):
 ```
 # bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-dnf --from-beginning
 {"schema":{"type":"string","optional":false},"payload":"2023-01-14T04:51:21-0500 INFO --- logging initialized ---"}
