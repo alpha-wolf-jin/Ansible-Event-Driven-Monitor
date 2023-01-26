@@ -114,7 +114,7 @@ name=local-file-sink
 connector.class=FileStreamSink
 tasks.max=1
 file=dnf.sink.txt
-topics=connect-test
+topics=connect-dnf
 ```
 
 Next, we'll start two connectors running in standalone mode, which means they run in a single, local, dedicated process. We provide three configuration files as parameters. The first is always the configuration for the Kafka Connect process, containing common configuration such as the Kafka brokers to connect to and the serialization format for data. The remaining configuration files each specify a connector to create. These files include a unique connector name, the connector class to instantiate, and any other configuration required by the connector.
